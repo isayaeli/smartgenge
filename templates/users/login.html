@@ -1,0 +1,72 @@
+{% extends 'base.html'%}
+  {% block title%}
+    <title>smart genge | login</title>
+	{% endblock title%}
+	
+  {% load static%}
+
+  {% block contents%}
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-7 ftco-animate">
+				<form action="#" class="billing-form" method="POST">
+                    {% csrf_token %}
+                    {% if messages%}
+                    {% for message in messages %}
+                            {% if message.tags == 'success'%}
+                            <div style="width: 82%; margin-left: 9%; text-align: center;" class="alert alert-success alert-dismissible fade show" role="alert">
+                             <strong>Successful! </strong> {{message}}
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                            {%endif%}
+                            {% if message.tags == 'error'%}
+                            <div style="width: 82%; margin-left: 9%; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+                             <strong></strong>{{message}}
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                            {%endif%}
+                    {% endfor%}
+                 {% endif%}
+				 <h3 class="mb-4 billing-heading">Login</h3>
+	          	<div class="row align-items-end">
+	          		<div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="firstname">User Name</label>
+                      <!-- <input type="text" class="form-control" placeholder=""> -->
+                      {{form.username}}
+	                </div>
+	              </div>
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                	<label for="lastname">Password</label>
+                      <!-- <input type="text" class="form-control" placeholder=""> -->
+                      {{form.password}}
+	                </div>
+                </div>
+                <div class="w-100"></div>
+                </div>
+                <br>
+                    <button type="submit" class="btn btn-primary py-3 px-4 " style=" width: 100%;" >Login</button>
+	            </form>
+              <!-- END -->
+               <div class="row mt-5 ml-5" >
+                 <div class="col-md-6">
+                      <p>Forgot password? <a href="{% url 'password_reset' %}">click here</a></p>
+                  </div>
+                  <div class="col-md-6">
+                      <p>New user? <a href="{% url 'register' %}">Register here</a></p>
+                  </div>
+              </div>
+			</div>
+        </div>
+
+    </div>
+</section> <!-- .section -->
+
+ {% endblock contents %}

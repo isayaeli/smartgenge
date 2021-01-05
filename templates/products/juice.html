@@ -1,0 +1,114 @@
+{% extends 'base.html'%}
+{% block title%}
+    <title>Mapocho | shop</title>
+	{% endblock title%}
+
+{% load static%}
+
+  {% block contents%}
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'products/images/bg_1.jpg'%});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2">
+				  <a href="{% url 'home'%}">Home</a>
+				</span> <span>Products</span></p>
+            <h1 class="mb-0 bread">Products</h1>
+          </div>
+        </div>
+      </div>
+	</div>
+	
+	{% if messages%}
+	{% for message in messages %}
+			{% if message.tags == 'success'%}
+			<br>
+			<div style="width: 82%; margin-left: 9%; text-align: center;" class="alert alert-success alert-dismissible fade show" role="alert">
+			 <strong>Successful! </strong> {{message}}
+			 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			   <span aria-hidden="true">&times;</span>
+			 </button>
+		   </div>
+			{%endif%}
+			{% if message.tags == 'error'%}
+
+			<div style="width: 82%; margin-left: 9%; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+			 <strong></strong>{{message}}
+			 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			   <span aria-hidden="true">&times;</span>
+			 </button>
+		   </div>
+			{%endif%}
+	{% endfor%}
+ {% endif%}
+    <section class="ftco-section">
+    	<div class="container">
+    	{% include 'products/links.html' %}
+    		<div class="row"> 
+
+				{% for product in juice %}
+    			<div class="col-md-6 col-lg-3 ftco-animate"> 
+    				<div class="product">
+    					<a href="{% url 'product' product.id %}" class="img-prod">
+							{% if product.image%}
+							<img style="height: 200px;" class="img-fluid" src="{{product.image.url}}" alt="Colorlib Template">
+							{% endif%}
+    						<span class="status">30%</span>
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="{% url 'product' product.id %}">{{product.name}}</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price">
+										{% if product.discount_price %}
+										<span class="mr-2 price-dc">Tsh {{product.discount_price}}</span>
+										{% endif%}
+										
+										<span class="price-sale">Tsh {{product.price}}</span></p>
+		    					</div>
+	    					</div>
+	    					<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    								<span><i class="ion-ios-menu"></i></span>
+									</a>
+
+									
+	    							<a href="{% url 'add-to-cart' product.id %}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<a href="{% url 'add_wishlist' product.id %}" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart"></i></span>
+	    							</a>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+				</div>
+				{% empty %}
+				<span style="margin-left: 420px;" ><h3><b>Juice Coming Soon </b></h3></span>
+				<span style="margin-left: 400px;" ><h3><b>Thank you for understanding</b></h3></span>
+				{% endfor%}
+			</div>
+			
+
+    		<!-- <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+    	</div>
+    </section>
+
+	{% endblock contents%}

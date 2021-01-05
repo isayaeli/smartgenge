@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block title%}
+    <title>smart genge |Oder </title>
+	{% endblock title%}
+{% block contents %}
+  <body class="goto-here">
+    <div class="hero-wrap hero-bread" style="background-image: url({% static 'products/images/bg_1.jpg'' %});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span>Order</span></p>
+            <h1 class="mb-0 bread">Order</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-section contact-section bg-light">
+        {% if messages%}
+                    {% for message in messages %}
+                            {% if message.tags == 'success'%}
+                            <div style="width: 82%; margin-left: 9%; text-align: center;" class="alert alert-success alert-dismissible fade show" role="alert">
+                             <strong>Successful! </strong> {{message}}
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                            {%endif%}
+                            {% if message.tags == 'error'%}
+                            <div style="width: 82%; margin-left: 9%; text-align: center;" class="alert alert-danger alert-dismissible fade show" role="alert">
+                             <strong></strong>{{message}}
+                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                             </button>
+                           </div>
+                            {%endif%}
+                    {% endfor%}
+                 {% endif%}
+      <div class="container">
+          {% for info in order|slice:1 %}
+      	<div class="row d-flex mb-5 contact-info">
+          <div class="w-100"></div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Address: <br> </span> <a href="#">{{info.address}}</a> </p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Second Address: <br> </span> <a href="#">{{info.second_address}}</a></p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Order Completed on: <br> </span> <a href="#">{{info.placed_on}}</a></p>
+	          </div>
+          </div>
+          <div class="col-md-3 d-flex">
+          	<div class="info bg-white p-4">
+	            <p><span>Ordered by: <br> </span> <a href="{{info.website}}">{{ info.user}}</a></p>
+	          </div>
+          </div>
+        </div>
+        {% endfor %}
+        <h5><b>Your oder summary</b></h5>
+        <div class="row block-9">
+          <div class="col-md-6 order-md-last d-flex">
+             <p style="font-size: 23px; font-weight: bolder;">Thank you For Shopping with Us <br> your product is on the way
+              <br>
+             </p>
+         		<br>
+         		<a style="font-weight: bolder;" class="mt-2 ml-5" href="{% url 'shop' %}">KEEP SHOPPING</a>
+          </div>
+
+          <div class="col-md-6 d-flex">
+          	 	<table class="table-bordered text-center" style="width: 100%;">
+          		<tr>
+          			<th>#</th>
+          			<th>products</th>
+          			<th>amont</th>
+          			<th>Order started on</th>
+          		</tr>
+          		{% for data in cart_items|slice:1 %}
+          		<tr>
+          			<td>{{ forloop.counter }}</td>
+          			<td>
+          				{% for items in data.items.all %}
+          			<p style="display: block; font-weight:bolder;">{{items}}</p>
+          			{% endfor %}
+          			</td>
+          			<td>Tsh {{data.get_line_total}}</td>
+          			<td>{{data.created_at}}</td>
+          		</tr>
+          		{% endfor %}
+          	</table>
+
+          </div>
+        </div>
+        <p style="margin-left: 51%; color: green;" >
+          Our staff will contact <i style="color: black;" class="icon-phone"></i> 
+          you a minute for further information</p>
+      </div>
+    </section>
+{% endblock contents %}
+
