@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {% block title%}
-    <title>smart genge | shop</title>
+    <title>Farmboksi|shop</title>
 	{% endblock title%}
 
 {% load static%}
@@ -53,7 +53,7 @@
 							{% if product.image%}
 							<img style="height: 200px;" class="img-fluid" src="{{product.image.url}}" alt="loading...">
 							{% endif%}
-    						<span class="status">30%</span>
+    						<span class="status">Minimum Order is 10kg</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
@@ -65,7 +65,7 @@
 										<span class="mr-2 price-dc">Tsh {{product.discount_price}}</span>
 										{% endif%}
 										
-										<span class="price-sale">Tsh {{product.price}}</span></p>
+										<span class="price-sale">Tsh {{product.total_price}} / 10kg</span></p>
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">

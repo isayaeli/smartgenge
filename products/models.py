@@ -27,6 +27,11 @@ class Product(models.Model):
     def __str__(self):
         return str(self.name)
 
+    @property
+    def total_price(self):
+        return self.price * 10
+    
+
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

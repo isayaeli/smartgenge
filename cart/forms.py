@@ -37,7 +37,7 @@ from django_countries.widgets import CountrySelectWidget
 
 
 PAYMENT = (
-    # ('S','Stripe'),
+    ('S','Stripe'),
     ('C','cash on Delivery')
 )
 

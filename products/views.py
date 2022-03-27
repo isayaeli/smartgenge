@@ -1,15 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from auction.views import auction
 from products.models import *
 from cart.models import CartItem
 from django.contrib.auth.decorators import login_required
 from about.models import Testimonial
+from auction.models import Auction, BidDate
 
 def home(request):
     products = Product.objects.all()[:8]
     testimon = Testimonial.objects.all()
+    auction = Auction.objects.all().order_by('-id')
+    bid_date = BidDate.objects.all()[0]
     context ={
         'products':products,
-        'testimon':testimon
+        'testimon':testimon,
+        'auction':auction,
+        'bid_date':bid_date
     }
     return render(request, 'products/index.html', context)
 

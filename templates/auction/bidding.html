@@ -1,0 +1,202 @@
+{% extends 'base.html'%}
+{% block title%}
+    <title>Farm Boksi | Bid</title>
+	{% endblock title%}
+
+{% load static%}
+{% load mathfilters %}
+{% load l10n %}
+
+{% block contents%}
+<!-- <div class="hero-wrap hero-bread" style="background-image: url({% static 'products/images/bg_1.jpg'%});">
+  <div class="container">
+	<div class="row no-gutters slider-text align-items-center justify-content-center">
+	  <div class="col-md-9 ftco-animate text-center">
+		  <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home'%}">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+		<h1 class="mb-0 bread">Product Single</h1>
+	  </div>
+	</div>
+  </div>
+</div> -->
+
+<section class="ftco-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 mb-5 ftco-animate">
+				<a href="{{data.image.url}}" class="image-popup"><img src="{{data.image.url}}" class="img-fluid" alt="Colorlib Template"></a>
+			</div>
+			<div class="col-lg-8 product-details pl-md-5 ftco-animate">
+        <div id="alert" ></div>
+				<h3>{{data.title}}</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="font-weight-bolder" >Status</h5>
+                {% if data.status == 'On Going' %}
+                  <h5><span class="badge badge-success badge-pill">{{ data.status }}, Ends in {{ data.deadline }} </span></h5>
+                {% else %}
+                  <h5><span class="badge badge-danger badge-pill">{{ data.status }} {{data.ended_time}} </span></h5>
+                {% endif %}
+            </div>
+
+            <div class="col-md-4">
+              <h5 class="font-weight-bolder" >Highest Bid</h5>
+              <span id="test"  class="font-weight-bolder" style="color: #bbb;"></span>
+            </div>
+
+            <div class="col-md-4">
+              <h5  class="font-weight-bolder" >Minimum Bid</h5>
+              <span  class="font-weight-bolder" style="color: #bbb;">
+                {{data.minimum_bid}} Tsh
+              </span>
+            </div>
+        </div>
+
+				<p class="ml-4" style="font-size:20px; font-weight: bold;" >
+                    <small style="font-size:20px; font-weight: bold;"  id="talk"></small>
+                    {% if latest_bid %}
+                    <small style="font-size:20px; font-weight: bold;"  id="talk1">Your Latest Bid
+                        {{latest_bid.amount}} Tsh
+                    </small>
+                  </p>
+                    {% else %}
+                    <span id="talk1" style="font-size:20px; font-weight: bold;">You have not submited any Bid Yet</span></p>
+                    {% endif %}
+				    <p>{{ data.description }}</p>
+
+            {% if data.status == 'On Going'  %}
+                <div class=" mt-4">
+                    <form action="{% url 'add_bid' %}" method="post" id="bid-form">
+                        <!-- {% csrf_token %} -->
+                        <input type="hidden" id="auction" name="auction" value={{data.id}}>
+                        <input required type="number" id="amount" name="amount" class="form-control" placeholder="Enter Your Bid Here Now">
+                        <input type="submit" value="Bid Now" class="btn btn-primary py-3 px-5 mt-3">
+                        <img class="mt-3" style=" display: none; height: 50px; width: 50px;" id="imgSpinner1" src="{% static 'products/images/s.gif' %}" alt="">  
+                  </form>
+              
+                      <div class="text-center" id="alert">
+                    
+                        <span id="test" ></span>
+
+                    </div>
+                </div>
+            {% endif %}
+		</div>
+	</div>
+</section>
+
+<section class="ftco-section">
+	<div class="container">
+			<div class="row justify-content-center mb-3 pb-3">
+	  <div class="col-md-12 heading-section text-center ftco-animate">
+		  <span class="subheading">Products</span>
+		<h2 class="mb-4">Related Auctions</h2>
+		<p>Here are some of the lates Auctions</p>
+	  </div>
+	</div>   		
+	</div>
+	<div class="container">
+		<div class="row">
+            {% for data in related_auctions %}
+            <div class="col-md-6 col-lg-3 ftco-animate">
+             
+              <div class="product">
+                <a id="url" data-url="{% url 'bid' data.id %}" href="{% url 'bid' data.id %}" class="img-prod">
+                {% if data.image %}
+                <img style="height: 200px;" class="img-fluid" src="{{data.image.url}}" alt="loading...">
+                {% endif%}
+                {% if data.status == 'On Going' %}
+                  <span  class="status font-weight-bold">{{ data.status }}</span>
+                {% else %}
+                <span  class="status font-weight-bold bg-danger">{{ data.status }}</span>
+                {% endif %}
+                  <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3 text-center">
+                  <h3><a class="font-weight-bold" href="{% url 'bid' data.id %}">{{data.title}}</a></h3>
+                  <div class="d-flex">
+                    <div class="text-center">
+                      <p class="price">
+                        <span class="mr-2 ">Maximun Bid</span>
+                        <span class="price-sale">Tsh 700,000</span>
+                    </p>
+                    </div>
+                  </div>
+                  <div class="bottom-area d-flex px-3">
+                    <div class="m-auto d-flex">
+               
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          {% endfor%}
+		</div>
+	</div>
+</section>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+
+function bid(){
+    console.log('working perfect')
+    console.log($('#amount').val())
+    $.ajax({
+        type:"POST",
+        url:'{% url "add_bid"%}',
+        data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            the_amount: $('#amount').val(),
+            the_auction: $('#auction').val()
+        },
+
+        beforeSend: function() {
+            $("#imgSpinner1").show();
+        },
+        complete: function() {
+            $("#imgSpinner1").hide();
+        },
+
+        success:function(json){
+            $('#amount').val('');
+            console.log(json);
+            console.log('success')
+            $("#talk").append("<strong>"+"Your Latest Bid is "+parseInt(json.amount).toLocaleString()+" Tsh"+"</strong>");
+            $('#alert').html("<div class='alert alert-success alert-dismissible fade show mt-3 ' data-alert><Strong>Successful:</strong> "+json.result+
+                " <a href='#' class='close' data-dismiss='alert' aria-label=Close'>&times;</a></div>"); 
+        }
+  });
+};
+
+
+
+$('#bid-form').on('submit', function(event){
+    event.preventDefault();
+    console.log('form sumitted')
+    bid();
+    $('#talk1').hide()
+    $('#talk :nth-child(1)').remove()
+
+});
+
+
+
+function refresh() {
+    $.ajax({
+      url: $('#url').data('#url'),
+      success: function(data) {
+          data1 = parseInt(data).toLocaleString()
+          $('#test').html(data1+" Tsh");
+      console.log(data)
+      }
+    });
+};
+$(function(){
+    refresh();
+    var int = setInterval("refresh()", 5000);
+  
+});
+</script>
+
+
+{% endblock contents%}

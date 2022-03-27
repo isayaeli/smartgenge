@@ -25,9 +25,9 @@
 				<div class="row">
 					<div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" 
           style="background-image: url({% static 'products/images/sk.jpg' %});">
-						<a href="https://vimeo.com/435512560" class="icon popup-vimeo d-flex justify-content-center align-items-center">
+						<!-- <a href="https://vimeo.com/435512560" class="icon popup-vimeo d-flex justify-content-center align-items-center">
 							<span class="icon-play"></span>
-						</a>
+						</a> -->
 					</div>
 					<div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
 	          <div class="heading-section-bold mb-4 mt-md-5">
@@ -44,6 +44,22 @@
 			</div>
       {% endfor %}
 		</section>
+
+
+     <section class="ftco-section mt-4" >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+          <h2 style="font-size: 22px; font-weight: bolder;" class="mb-0">Our Vision </h2>
+            To become the center of reliable source of agriproducts in the country and across boarders that will be providing free market and facilitating agricultural production.
+          </div>
+           <div class="col-md-6">
+          <h2 style="font-size: 22px; font-weight: bolder;" class="mb-0">Our Mission </h2>
+           To empower small farmers by mitigating post harvesting loses as well as connecting them with the global market through technology by facilitating the whole process of supply chain.  
+          </div>
+        </div>
+      </div>
+    </section>
 
 		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
       <div class="container py-4">
@@ -109,6 +125,8 @@
         </div>
     	</div>
     </section>
+
+   
 		
 		<section class="ftco-section testimony-section">
       <div class="container">
@@ -127,7 +145,7 @@
               {% for item in testimon %}
               <div class="item">
                 <div class="testimony-wrap p-4 pb-5">
-                  <div class="user-img mb-5" style="background-image: url({{item.image.url}})">
+                  <div class="user-img mb-5" style="background-image: url()">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -135,7 +153,7 @@
                   <div class="text text-center">
                     <p class="mb-5 pl-4 line">{{item.desc}}</p>
                     <p class="name">{{item.name}}</p>
-                    <span class="position">{{item.carrier}}</span>
+                    <!-- <span class="position">{{item.carrier}}</span> -->
                   </div>
                 </div>
               </div>

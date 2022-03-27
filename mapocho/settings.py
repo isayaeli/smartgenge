@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'users',
     'contacts',
     'about',
-    'django_countries'
+    'auction',
+    'django_countries',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [
@@ -120,6 +122,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+USE_THOUSAND_SEPARATOR = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -136,12 +140,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ummasoft@gmail.com'
-EMAIL_HOST_PASSWORD = 'isaya@mimi'
-EMAIL_PORT = 587
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'ummasoft@gmail.com'
+# EMAIL_HOST_PASSWORD = 'isaya@mimi'
+# EMAIL_PORT = 587
 
 
 #https://preview.themeforest.net/item/gitex-taxi-html-mobile-application/full_screen_preview/24427422?_ga=2.226874333.1750272358.1593697886-310989175.1581838694

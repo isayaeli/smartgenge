@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block title%}
+    <title>Farm Boksi|Auction</title>
+    {% endblock title%}
+{% block contents %}
+  <body class="goto-here">
+
+
+  <div class="hero-wrap hero-bread" 
+    style="background-image: url({% static 'products/images/bg_1.jpg'%});">
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home'%}">Home</a></span> <span>Auction</span></p>
+            <h1 class="mb-0 bread">About us</h1>
+          </div>
+        </div>
+      </div>
+  </div>
+  <section class="ftco-section">
+    <div class="row justify-content-center">
+      <div class="col-md-10 mb-5 text-center">
+        <ul class="product-category">
+          <h4 class="font-weight-bold text-muted" >Featured Auction Listings</h4>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row"> 
+      {% for data in auctions %}
+        <div class="col-md-6 col-lg-3 ftco-animate">
+         
+          <div class="product">
+            <a href="{% url 'bid' data.id%}" class="img-prod">
+            {% if data.image%}
+            <img style="height: 200px;" class="img-fluid" src="{{data.image.url}}" alt="loading...">
+            {% endif%}
+            {% if data.status == 'On Going' %}
+              <span  class="status font-weight-bold">{{ data.status }} <span class="ml-2" >Ends in {{ data.deadline }}</span> </span>
+            {% else %}
+              <span  class="status font-weight-bold bg-danger">{{ data.status }} <span class="ml-2" >{{ data.ended_time }}</span></span>
+            {% endif %}
+              <div class="overlay"></div>
+            </a>
+            <div class="text py-3 pb-4 px-3 text-center">
+              <h3><a class="font-weight-bold" href="{% url 'bid' data.id %}">{{data.title}}</a></h3>
+              <div class="d-flex">
+                <div class="text-center">
+                  <p class="price">
+                    <span class="mr-2 ">Minimum Bid</span>
+                    <span class="price-sale">{{data.minimum_bid}}</span>
+                </p>
+                </div>
+              </div>
+              <div class="bottom-area d-flex px-3">
+                <div class="m-auto d-flex">
+           
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      {% endfor%}
+    </div>
+<!-- 			
+
+      <div class="row mt-5">
+        <div class="col text-center">
+          <div class="block-27">
+            <ul>
+              <li><a href="#">&lt;</a></li>
+              <li class="active"><span>1</span></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">&gt;</a></li>
+            </ul>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+  
+
+
+
+
+
+
+{% endblock contents %}
+
+   
+    
+  

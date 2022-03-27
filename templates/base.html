@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet"> -->
 
-    <link style="border-radius: 100%;" rel="icon" type="img/png" href="{% static 'products/images/icon.png' %}">
+    <link style="border-radius: 100%;" rel="icon" type="img/png" href="{% static 'products/images/farmcon.png' %}">
 
     <link rel="stylesheet" href="{% static 'products/css/open-iconic-bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'products/css/animate.css'%}">
@@ -63,7 +63,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="{% url 'home'%}">
-          <img style="height: 80px;" src="{% static 'products/images/sg2.png' %}">
+          <img style="height: 80px;" src="{% static 'products/images/farmlogo.jpg' %}">
         </a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
@@ -84,6 +84,7 @@
               </div>
             </li>
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="{% url 'auction' %}" class="nav-link">Auction</a></li>
 	          <li class="nav-item"><a href="{% url 'blogs' %}" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="{%url 'cart'%}" class="nav-link"><span class="icon-shopping_cart"></span>[{{request.user|cart_item_count}}]</a></li>
@@ -141,20 +142,20 @@
       </div>
     </section>
     
+    
+      
   <footer class="ftco-footer ftco-section">
     <div class="container">
-      <div class="row">
-        <div class="mouse">
-          <a  href="#" class="mouse-icon" style="margin-left: 90%; margin-top: 200px;">
-            <div  class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-          </a>
-        </div>
+      <div class="mouse">
+        <a  href="#" class="mouse-icon">
+          <div  class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+        </a>
       </div>
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-            <h2 class="ftco-heading-2">Vegefoods</h2>
-            <p>This is the palace of vegetables with fast and  reliable  delivery services <b>BE SMART SHOPT WITH SMART GENGE</b></p>
+            <h2 class="ftco-heading-2">Farm Boksi</h2>
+            <p>Stalk Us on our socials below for more update</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
               <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -164,29 +165,30 @@
         </div>
         <div class="col-md">
           <div class="ftco-footer-widget mb-4 ml-md-5">
-            <h2 class="ftco-heading-2">Menu</h2>
+            <h2 class="ftco-heading-4">Menu</h2>
             <ul class="list-unstyled">
-              <li><a href="{% url 'about' %}" class="py-2 d-block">Shop</a></li>
+              <li><a href="{% url 'shop' %}" class="py-2 d-block">Shop</a></li>
               <li><a href="{% url 'about' %}" class="py-2 d-block">About</a></li>
               <li><a href="{% url 'blogs' %}" class="py-2 d-block">blog</a></li>
               <li><a href="{% url 'contact' %}" class="py-2 d-block">Contact Us</a></li>
             </ul>
           </div>
         </div>
+
+        
         <div class="col-md-4">
            <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Help</h2>
             <div class="d-flex">
               <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-                <li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-                <li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-                <li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
-                <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
+                <li><a  data-toggle="modal" data-target="#staticBackdrop " class="py-2 d-block">Shipping Information(FAQS)</a></li>
+                <li><a  data-toggle="modal" data-target="#staticBackdrop2" class="py-2 d-block">Returns &amp; Exchange</a></li>
+                <li><a  data-toggle="modal" data-target="#staticBackdrop3" class="py-2 d-block">Terms &amp; Conditions</a></li>
+                <li><a  data-toggle="modal" data-target="#staticBackdrop4" class="py-2 d-block">Privacy Policy</a></li>
               </ul>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">FAQs</a></li>
+              <!-- <ul class="list-unstyled">
                 <li><a href="#" class="py-2 d-block">Contact</a></li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </div>
@@ -195,9 +197,12 @@
             <h2 class="ftco-heading-2"> Get hold of us</h2>
             <div class="block-23 mb-3">
               <ul>
-                <li><span class="icon icon-map-marker"></span><span class="text">Kijitonyama, victoria near Makumbusho bus stand</span></li>
-                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+255 684 695 157</span></a></li>
-                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">isayaelib@gmail.com</span></a></li>
+                <li><span class="icon icon-map-marker"></span><span class="text">Pasiansi mwanza.</span></li>
+                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+255 756 705 511</span></a></li>
+                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">sale@farmboksi.com</span></a></li>
+                
+                <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+                <div class="elfsight-app-11b6b49c-8d7a-40a0-82c6-c9d99edb4b8d"></div>
               </ul>
             </div>
           </div>
@@ -207,7 +212,7 @@
         <div class="col-md-12 text-center">
 
           <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Developed by  <a style="color: black;" href="https://ummasoft.pythonanywhere.com" target="_blank">Ummasoft</a>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
         </div>
@@ -215,6 +220,167 @@
     </div>
   </footer>
   {% endblock footer%}
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Shipping information (FAQS)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <details class="mb-3" >
+          <summary><b>How will my order be impacted by the recent [ covid-19 ] outbreak ?</b></summary>
+          <p class="ml-3" >Your order will not necessarily be impacted but it depends on the unique situation of  the products you ordered because of some countries policies</p>
+        </details>
+
+        <details class="mb-3" >
+          <summary><b>Will my shipment get delayed due to the [ covid -19 ]? </b></summary>
+          <p class="ml-3" >Shipping and logistic have gradually resumed in most of the countries , however  deliveries may be delayed in some countries due to transportation restrictions . please  consult with your local ports or shipping companies regarding the latest updates .</p>
+        </details>
+
+        <details class="mb-3" >
+          <summary><b>Should i be concerned of the risk of contracting the [ covid - 19 ] form a  package or products hipping from Tanzania ? </b></summary>
+          <p class="ml-3" >According to the United State centres for disease control and prevention [ CDC ] there  is no evidence to support the transmission of Covid-19 associated with imported goods.
+            Authorities are taking strict measures on this public health event and we are also paying  close attention to the situation and will cooperate with relevant authorities when possible .
+            you can read more about this and other frequently asked questions answered by the CDC  here 
+            <a href="https://www.cdc.gov/coronavirus/2019-ncov/feq.html"></a>https://www.cdc.gov/coronavirus/2019-ncov/feq.html.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">RETURNING AN ITEM </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ol>
+            <li>You can initiate a return within 5 days after delivery / collection for Eligible reasons: </li>
+            <li>Eligible reasons - wrong, damaged, defective, incomplete, wrong-size,
+               and counterfeit  items can be returned (Ensure items are reported within the shortest time possible to  facilitate an easy return process).</li>
+            <li>When returning an item, Ensure all seals, tags and accessories are left intact and item is  in its original packaging.</li>
+            <li>Perishable products are not eligible for return. </li>
+            <li>Get your refund faster when you drop off your return at the Farm Boksi drop off station</li>
+            <li>Orders delivered through offline Service will not be eligible for return.</li>
+            <li>Find below the list of product categories that cannot be returned because of change of  mind
+              <ul>
+                <li>Tomatoes</li>
+                <li>Fresh vegetables</li>
+                <li>Fresh fruits</li>
+              </ul>
+            </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Welcome to http://www.farmboksi.com! These Terms of Use describe the terms and  conditions applicable to your access and use of the website owned by Farmboksi.com from  time to time which relate to (a) the Farm Boksi e-commerce platform including but not  limited to the website identified by the uniform resource locator “www.farmboksi.com” and  the Farmboksi.com e-commerce platform and (b) the Farm boksi e-commerce platform  including and 
+          This document is a legally binding agreement between you as the user(s) of  the Sites (referred to as “you”, “your” or “User” hereinafter) and the farmboksi.com  contracting entity determined in accordance with clause 2.1nbelow (referred to as “we”,  “our” or “farmboksi.com” hereinafter). 
+        </p>
+         <h5 class="mt-3 mb-3" >Application and Acceptance of the Terms</h5>
+         <ol>
+            <li> Your access to and use of the Sites and Farmboksi.com services and products through  the Site, which shall include the platforms described in the Terms (such services and  products collectively referred to as the “Services” hereinafter) is subject to the terms  and conditions contained in this document and any other rules and policies of the Sites  that Farmboksi.com may publish from time to time. This document and such other rules  and policies of the Sites are collectively referred to below as the “Terms”. By accessing  and use of the Sites and Services, you agree to accept and be bound by the Terms.  Please do not access or use the Services or the Sites if you do not accept all of the  Terms. 
+            </li>
+            <li>
+              You may not access or use the Services or the Sites and may not accept the Terms if (a)  you are not of legal age to form a binding contract with Farmboksi.com you are not  permitted to receive any services under the laws of Tanzania or other countries/regions  including the country/region in which you are resident or from which you access and use  the Services and the sites
+            </li>
+            <li>
+              Farmboksi.com may amend any Terms at any time by posting the relevant amended  and restated Terms on the Sites. By continuing to access or use the Services or the Sites,  you agree that the amended and restated Terms will apply to you. 
+            </li>
+            <li>
+              If Farmboksi.com has posted or provided a translation of the English language version of  the terms, you agree that the translation is provided for convenience only and that the  English language version will govern your access to and use of the services or the sites. 
+            </li>
+            <li>
+              You may be required to enter into separate agreement(s), whether online or offline,  with Framboski.com or our affiliate for any service (or features within the services) (Each  an “Additional Agreement”). If there is any conflict or inconsistency between the terms  and an additional agreement, the additional agreement shall take precedence over the  terms only in relation to that service 9or feature within the service) concerned
+            </li>
+            <li>
+              The terms may not otherwise be modified except in writing by an authorized officer of  farmboksi.com
+            </li>
+         </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Privacy Policy</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Farm Boksi cares about your privacy. For this reason, we collect and use personal  information only as 
+          needed to deliver our products, services, websites and mobile applications, and to  communicate 
+          with you about the same, or as you have requested (collectively, our “Services”).  Your personal information includes information such as:
+          </p>
+
+          <ul class="mt-3 mb-3">
+              <li>Name</li>
+              <li>Address</li>
+              <li>Telephone number </li>
+              <li>Date of birth</li>
+              <li>Email address</li>
+              <li> Billing and payment information </li>
+              <li>Candidate information (for job applicants) </li>
+          </ul>
+          <p class="mb-3">Other data collected that could directly or indirectly identify you. 
+            If at any time you have questions about our practices or any of your rights described below,  you may reach us at sale@farmboksi.com 
+            </p>
+            <p class="mb-3">
+              This inbox is actively monitored and managed so that we can deliver an experience that  you can confidently trust. 
+            </p>
+            <p class="mb-3">
+              What information we collect, how we collect it, and why 
+            </p>
+            <p class="mb-3">
+              Much of what you likely consider personal information is collected directly from you when  you: create an account or purchase any of our Services (ex: billing information, including  name, address, credit card number, government identification); request assistance from  our award-winning customer support team (ex: phone number); complete contact forms  or request newsletters or other information from us (ex: email); or participate in contests  and surveys, apply for a job, or otherwise participate in activities we promote that might  require information about you. 
+            </p>
+            <p class="mb-3">
+              However, we also collect additional information when delivering our Services to you to  ensure necessary and optimal performance. These methods of collection may not be as
+            </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 <!-- loader -->

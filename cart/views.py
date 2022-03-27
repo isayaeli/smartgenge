@@ -14,6 +14,7 @@ from django.core.mail import send_mail
 def cart_view(request):
     try:
         cart = Cart.objects.get(user=request.user, odered=False)
+        print(cart)
         context = {
             'cart':cart
         }
@@ -98,7 +99,8 @@ def remove_single_product_from_cart(request, id):
     else:
         messages.info(request, "You do not have an active order.")
         return redirect("shop")
-
+        
+        
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         cart_items = Cart.objects.filter(user=self.request.user, odered=False)
@@ -135,7 +137,7 @@ class CheckoutView(View):
                 cart.order = order
                 cart.save()
                 send_mail(
-                    'New Order has been placed', 
+                    'New Order has been placed',
                     f"Please visit your admin panel site to see order",
                     'ummasoft@gmail.com',['isayaelib@gmail.com'], fail_silently=False
                 )
